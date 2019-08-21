@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{079a6ce4-30ea-4c50-af8b-3565b84d1cb6}</ProjectGuid>
+    <MainSource>topoutils.dpr</MainSource>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>topoutils.dll</DCC_DependencyCheckOutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_WriteableConstants>True</DCC_WriteableConstants>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_UnitSearchPath>E:\projects\glib;E:\projects\glib3</DCC_UnitSearchPath>
+    <DCC_ResourcePath>E:\projects\glib;E:\projects\glib3</DCC_ResourcePath>
+    <DCC_ObjPath>E:\projects\glib;E:\projects\glib3</DCC_ObjPath>
+    <DCC_IncludePath>E:\projects\glib;E:\projects\glib3</DCC_IncludePath>
+    <DCC_Define>RELEASE</DCC_Define>
+    <DCC_SYMBOL_DEPRECATED>False</DCC_SYMBOL_DEPRECATED>
+    <DCC_SYMBOL_PLATFORM>False</DCC_SYMBOL_PLATFORM>
+    <DCC_UNIT_PLATFORM>False</DCC_UNIT_PLATFORM>
+    <DCC_UNIT_DEPRECATED>False</DCC_UNIT_DEPRECATED>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_WriteableConstants>True</DCC_WriteableConstants>
+    <DCC_UnitSearchPath>E:\projects\glib;E:\projects\glib3</DCC_UnitSearchPath>
+    <DCC_ResourcePath>E:\projects\glib;E:\projects\glib3</DCC_ResourcePath>
+    <DCC_ObjPath>E:\projects\glib;E:\projects\glib3</DCC_ObjPath>
+    <DCC_IncludePath>E:\projects\glib;E:\projects\glib3</DCC_IncludePath>
+    <DCC_Define>DEBUG</DCC_Define>
+    <DCC_SYMBOL_DEPRECATED>False</DCC_SYMBOL_DEPRECATED>
+    <DCC_SYMBOL_PLATFORM>False</DCC_SYMBOL_PLATFORM>
+    <DCC_UNIT_PLATFORM>False</DCC_UNIT_PLATFORM>
+    <DCC_UNIT_DEPRECATED>False</DCC_UNIT_DEPRECATED>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+<BorlandProject><Delphi.Personality><Parameters><Parameters Name="HostApplication">C:\Program1\Integro\InGeo\InGeo.exe</Parameters><Parameters Name="UseLauncher">False</Parameters><Parameters Name="LoadAllSymbols">True</Parameters><Parameters Name="LoadUnspecifiedSymbols">False</Parameters></Parameters><Language><Language Name="ProjectLang">$00000419</Language></Language><VersionInfo><VersionInfo Name="IncludeVerInfo">True</VersionInfo><VersionInfo Name="AutoIncBuild">True</VersionInfo><VersionInfo Name="MajorVer">1</VersionInfo><VersionInfo Name="MinorVer">2</VersionInfo><VersionInfo Name="Release">0</VersionInfo><VersionInfo Name="Build">76</VersionInfo><VersionInfo Name="Debug">False</VersionInfo><VersionInfo Name="PreRelease">True</VersionInfo><VersionInfo Name="Special">False</VersionInfo><VersionInfo Name="Private">False</VersionInfo><VersionInfo Name="DLL">True</VersionInfo><VersionInfo Name="Locale">1049</VersionInfo><VersionInfo Name="CodePage">1251</VersionInfo></VersionInfo><VersionInfoKeys><VersionInfoKeys Name="CompanyName">AzSoft(r)</VersionInfoKeys><VersionInfoKeys Name="FileDescription">Модуль дополнительных утилит для ГИС "Ингео"</VersionInfoKeys><VersionInfoKeys Name="FileVersion">1.2.0.76</VersionInfoKeys><VersionInfoKeys Name="InternalName"></VersionInfoKeys><VersionInfoKeys Name="LegalCopyright">(с) Азаматов Азамат Хадисович</VersionInfoKeys><VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys><VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys><VersionInfoKeys Name="ProductName">Модуль дополнительных утилит для ГИС "Ингео"</VersionInfoKeys><VersionInfoKeys Name="ProductVersion">1.2</VersionInfoKeys><VersionInfoKeys Name="Comments"></VersionInfoKeys></VersionInfoKeys><Source><Source Name="MainSource">topoutils.dpr</Source></Source></Delphi.Personality></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+  <ItemGroup>
+    <DelphiCompile Include="topoutils.dpr">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="addn.pas" />
+    <DCCReference Include="clearzpoints.pas">
+      <Form>fClearZPoints</Form>
+    </DCCReference>
+    <DCCReference Include="cntrcloser.pas" />
+    <DCCReference Include="contactdrawer.pas">
+      <Form>fContactDrawer</Form>
+    </DCCReference>
+    <DCCReference Include="contourorient.pas">
+      <Form>fContourOrient</Form>
+    </DCCReference>
+    <DCCReference Include="coordconverter.pas">
+      <Form>fCoordConverter</Form>
+    </DCCReference>
+    <DCCReference Include="coordsystem.pas">
+      <Form>fCoordSystem</Form>
+    </DCCReference>
+    <DCCReference Include="coordsystemlist.pas">
+      <Form>fCoordSystemList</Form>
+    </DCCReference>
+    <DCCReference Include="copybystyle.pas" />
+    <DCCReference Include="cpreport.pas">
+      <Form>fCpReport</Form>
+    </DCCReference>
+    <DCCReference Include="cpwindow.pas" />
+    <DCCReference Include="createzone.pas">
+      <Form>fCreateZone</Form>
+    </DCCReference>
+    <DCCReference Include="csvexport.pas">
+      <Form>fCSVExport</Form>
+    </DCCReference>
+    <DCCReference Include="dataextractor.pas" />
+    <DCCReference Include="dbextractor.pas">
+      <Form>fDBExtractor</Form>
+    </DCCReference>
+    <DCCReference Include="decurve.pas">
+      <Form>fDeCurve</Form>
+    </DCCReference>
+    <DCCReference Include="deletenear.pas" />
+    <DCCReference Include="divider.pas">
+      <Form>fDivider</Form>
+    </DCCReference>
+    <DCCReference Include="egrzpoint.pas">
+      <Form>fEGRZPoint</Form>
+    </DCCReference>
+    <DCCReference Include="errorsearch.pas">
+      <Form>fErrorSearch</Form>
+    </DCCReference>
+    <DCCReference Include="eventtest.pas" />
+    <DCCReference Include="FRM.PAS">
+      <Form>MainForm</Form>
+    </DCCReference>
+    <DCCReference Include="katexport.pas">
+      <Form>fKatExport</Form>
+    </DCCReference>
+    <DCCReference Include="layoutfindreplace.pas" />
+    <DCCReference Include="layoutfindreplaceform.pas">
+      <Form>fLayoutFindReplaceForm</Form>
+    </DCCReference>
+    <DCCReference Include="lineconnect.pas" />
+    <DCCReference Include="lineconnect2.pas" />
+    <DCCReference Include="linetext.pas">
+      <Form>fLineText</Form>
+    </DCCReference>
+    <DCCReference Include="linzasechka.pas">
+      <Form>fLinZasechka</Form>
+    </DCCReference>
+    <DCCReference Include="linzmapeditor.pas" />
+    <DCCReference Include="makecircle.pas" />
+    <DCCReference Include="matrixcnv.pas" />
+    <DCCReference Include="MSELSTYLE.PAS">
+      <Form>fMSelectStyle</Form>
+    </DCCReference>
+    <DCCReference Include="multizone.pas" />
+    <DCCReference Include="navigator.pas">
+      <Form>fNavigator</Form>
+    </DCCReference>
+    <DCCReference Include="objselectform.pas">
+      <Form>fObjectSelect</Form>
+    </DCCReference>
+    <DCCReference Include="objselector.pas" />
+    <DCCReference Include="okrugl.pas">
+      <Form>fOkrugl</Form>
+    </DCCReference>
+    <DCCReference Include="oversearch.pas">
+      <Form>fOverSearch</Form>
+    </DCCReference>
+    <DCCReference Include="pincreate.pas">
+      <Form>fPinCreate</Form>
+    </DCCReference>
+    <DCCReference Include="pins.pas">
+      <Form>fPins</Form>
+    </DCCReference>
+    <DCCReference Include="pinsedit.pas" />
+    <DCCReference Include="podt.pas">
+      <Form>fPodt</Form>
+    </DCCReference>
+    <DCCReference Include="polygoncreator.pas">
+      <Form>fPolygonCreator</Form>
+    </DCCReference>
+    <DCCReference Include="prefsaver.pas" />
+    <DCCReference Include="quickplan.pas">
+      <Form>fQuickPlan</Form>
+    </DCCReference>
+    <DCCReference Include="rasterchange.pas">
+      <Form>fRasterChange</Form>
+    </DCCReference>
+    <DCCReference Include="SELLAYER.PAS">
+      <Form>fSelectLayer</Form>
+    </DCCReference>
+    <DCCReference Include="semipindrawe.pas">
+      <Form>fSemiPinDrawer</Form>
+    </DCCReference>
+    <DCCReference Include="semipineditor.pas" />
+    <DCCReference Include="semtest.pas">
+      <Form>fSemTest</Form>
+    </DCCReference>
+    <DCCReference Include="smartpointform.pas">
+      <Form>fSmartPointMaker</Form>
+    </DCCReference>
+    <DCCReference Include="smartpointmaker.pas" />
+    <DCCReference Include="specsemcopy.pas">
+      <Form>fSpecSemCopy</Form>
+    </DCCReference>
+    <DCCReference Include="splitter.pas">
+      <Form>fSplitter</Form>
+    </DCCReference>
+    <DCCReference Include="tabimport.pas">
+      <Form>fTabImport</Form>
+    </DCCReference>
+    <DCCReference Include="test.pas">
+      <Form>fTest</Form>
+    </DCCReference>
+    <DCCReference Include="thclass.pas" />
+    <DCCReference Include="theditor.pas">
+      <Form>fTHEditor</Form>
+    </DCCReference>
+    <DCCReference Include="thmaker.pas">
+      <Form>fTHMaker</Form>
+    </DCCReference>
+    <DCCReference Include="thsourceeditor.pas">
+      <Form>fSourceEditor</Form>
+    </DCCReference>
+    <DCCReference Include="tolinears.pas" />
+    <DCCReference Include="transformator.pas">
+      <Form>fTransformator</Form>
+    </DCCReference>
+    <DCCReference Include="ufastselect.pas" />
+    <DCCReference Include="utmclass.pas" />
+    <DCCReference Include="vectorrotate.pas" />
+    <DCCReference Include="vectorrotaterform.pas">
+      <Form>fVectorRotater</Form>
+    </DCCReference>
+    <DCCReference Include="vedomost.pas">
+      <Form>fVedomost</Form>
+    </DCCReference>
+    <None Include="Readme.txt" />
+    <None Include="topoutils.todo" />
+  </ItemGroup>
+</Project>
