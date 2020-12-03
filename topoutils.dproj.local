@@ -87,5 +87,7 @@
     <Transaction>2019.04.09 12:10:37.564.pas,C:\projects\topoutils\Unit1.pas=C:\projects\topoutils\layoutfindreplace.pas</Transaction>
     <Transaction>2019.04.09 12:36:28.938.pas,C:\projects\topoutils\Unit1.pas=C:\projects\topoutils\layoutfindreplaceform.pas</Transaction>
     <Transaction>2019.04.09 12:36:28.938.dfm,C:\projects\topoutils\Unit1.dfm=C:\projects\topoutils\layoutfindreplaceform.dfm</Transaction>
+    <Transaction>2020.06.05 00:55:08.068.pas,D:\projects\topoutils\Unit1.pas=D:\projects\topoutils\ZasechkaForm.pas</Transaction>
+    <Transaction>2020.06.05 00:55:08.069.dfm,D:\projects\topoutils\Unit1.dfm=D:\projects\topoutils\ZasechkaForm.dfm</Transaction>
   </Transactions>
 </BorlandProject>

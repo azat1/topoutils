@@ -82,7 +82,7 @@ uses
   csvexport, clearzpoints, contourorient, quickplan, linzasechka, polygoncreator, lineconnect,
   rasterchange, coordsystem, contactdrawer, pins, semipindrawe, linetext,cpwindow, tolinears,
   ufastselect, cntrcloser, lineconnect2, vectorrotate, dbextractor, makecircle, createzone, deletenear, objselectform, copybystyle, smartpointform,
-  layoutfindreplaceform;
+  layoutfindreplaceform, zasechkaForm;
 
 const
 	//Команда начать измерение расстояния
@@ -137,8 +137,11 @@ const
         cmCopyByStyle=49;
         cmSetPointsSmart=50;
         cmLayoutFindReplace=51;
+        cmZasechka=52;
+        cmFastSelect2=53;
+        cmLineConnect3=54;
 
-	kMacros: array [0..50] of TM2MacroAttrs = (
+	kMacros: array [0..53] of TM2MacroAttrs = (
 		( Command: cmActivate;
 			Name: 'SETPOINTS';
 			Hint: 'Нумерация точек объектов';
@@ -452,7 +455,15 @@ const
 			ToolbarName: 'Утилиты Az Soft (топо3)';
 			ToolbarGroup: 'Утилиты Az Soft (топо3)';
 			Bitmap: 0),
- 		( Command: cmCloseAll;
+ 		( Command: cmFastSelect2;
+			Name: 'FASTSELECT2';
+			Hint: 'Выделить все объекты такого же стиля что и выделенные вписанные в окно ';
+			MenuPath: 'Анализ\Выделить все объекты такого же стиля что и выделенные вписанные в окно';
+			MenuShortCut: 0;
+			ToolbarName: 'Утилиты Az Soft (топо3)';
+			ToolbarGroup: 'Утилиты Az Soft (топо3)';
+			Bitmap: 0),
+      ( Command: cmCloseAll;
 			Name: 'CLOSEALL';
 			Hint: 'Замкнуть все выделенные объекты';
 			MenuPath: 'Правка\Замкнуть все выделенные объекты';
@@ -547,8 +558,23 @@ const
 			MenuShortCut: 0;
 			ToolbarName: '';
 			ToolbarGroup: '';
+			Bitmap: 0),
+      ( Command: cmZasechka;
+			Name: 'ZASECHKA';
+			Hint: 'Линейная засечка...';
+			MenuPath: 'Правка\Линейная засечка...';
+			MenuShortCut: 0;
+			ToolbarName: 'Утилиты Az Soft (топо3)';
+			ToolbarGroup: 'Утилиты Az Soft (топо3)';
+			Bitmap: 0),
+       ( Command: cmLineConnect3;
+			Name: 'LINECONNECT3';
+			Hint: 'Соединение линий 3...';
+			MenuPath: 'Правка\Соединить все линии 3...';
+			MenuShortCut: 0;
+			ToolbarName: 'Утилиты Az Soft (топо3)';
+			ToolbarGroup: 'Утилиты Az Soft (топо3)';
 			Bitmap: 0)
-
 
 
 
@@ -681,6 +707,9 @@ begin
       ToLinear;
     cmFastSelect:
       FastSelect(gAddon2);
+    cmFastSelect2:
+      FastSelect2(gAddon2);
+
     cmCloseAll:
       CloseAll;
     cmUnCloseAll:
@@ -705,6 +734,11 @@ begin
       StartSmartPoint;
     cmLayoutFindReplace:
       StartLayoutFindReplace(gAddon2);
+
+    cmZasechka:
+      MakeZasechka(gAddon2);
+    cmLineConnect3:
+      LineConnect3(gAddon2);
 	end;
 end;
 

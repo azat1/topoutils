@@ -24,8 +24,8 @@ object fSplitter: TfSplitter
     TabOrder = 0
   end
   object Button1: TButton
-    Left = 492
-    Top = 64
+    Left = 499
+    Top = 73
     Width = 133
     Height = 25
     Caption = #1056#1072#1079#1076#1077#1083#1080#1090#1100

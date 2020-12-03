@@ -179,7 +179,11 @@ begin
       newcntp.Closed:=shp.Contour.Item[si].Closed;
       for vi:=0 to tn.Count-1 do
       begin
-        newobj.SemData.SetValue(tn[vi],fn[vi],obj.SemData.GetValue(tn[vi],fn[vi],0),0);
+        try
+          newobj.SemData.SetValue(tn[vi],fn[vi],obj.SemData.GetValue(tn[vi],fn[vi],0),0);
+        except
+
+        end;
       end;
 
     end;
@@ -237,8 +241,12 @@ begin
     st:=sdata[i];
     for fi := 0 to st.FieldInfos.Count - 1 do
     begin
+      try
       dobj.SemData.SetValue(st.Name,st.FieldInfos[fi].FieldName,
         sobj.SemData.GetValue(st.Name,st.FieldInfos[fi].FieldName,0),0);
+      except
+
+      end;
     end;
   end;
 

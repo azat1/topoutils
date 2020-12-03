@@ -18,10 +18,14 @@ type
     Label1: TLabel;
     Button2: TButton;
     bFastMake: TButton;
+    eDL: TEdit;
+    Label2: TLabel;
+    Button3: TButton;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bFastMakeClick(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     asin:array [-1200..1200] of double;
     acos:array [-1200..1200] of double;
@@ -42,6 +46,10 @@ type
     procedure DecurveFast;
     procedure Curve2Lines2Fast(cntp: IIngeoContourPart; vi: integer; lx, ly, x, y, cv: double);
     procedure DecurveContour2F(cntp: IIngeoContourPart);
+    procedure Curve2Lines2FastL(cntp: IIngeoContourPart; vi: integer; lx, ly, x,
+      y, cv, dL: double);
+    procedure DecurveFastDL(dl: double);
+    procedure DecurveContour2FDL(cntp: IIngeoContourPart; dl: double);
 
 //    function FSin(f:double):double;
 
@@ -296,6 +304,34 @@ begin
   end;
 end;
 
+procedure TfDeCurve.DecurveContour2FDL(cntp: IIngeoContourPart;dl:double);
+var vi:integer;
+    lx,ly,x,y,cv,ccv:double;
+    flag:boolean;
+begin
+  vi:=0;
+  flag:=False;
+  while vi<cntp.VertexCount do
+  begin
+    cntp.GetVertex(vi,x,y,cv);
+    if (vi=0) and (cv<>0) then flag:=True;
+    if (cv<>0) and (vi<>0) then
+    begin
+      Curve2Lines2FastL(cntp,vi,lx,ly,x,y,cv,dl);
+//      continue;
+    end;
+    lx:=x;
+    ly:=y;
+    inc(vi);
+  end;
+  if flag  and cntp.Closed then
+  begin
+    cntp.GetVertex(0,x,y,cv);
+    cntp.GetVertex(cntp.VertexCount-1,lx,ly,ccv);
+    Curve2Lines2FastL(cntp,cntp.VertexCount-1,lx,ly,x,y,cv,dl);
+  end;
+end;
+
 procedure TfDeCurve.DecurveFast;
 var obj:IIngeoMapObject;
     shp:IIngeoShape;
@@ -314,6 +350,31 @@ begin
       begin
         cntp:=shp.Contour.Item[ci];
         DeCurveContour2F(cntp);
+      end;
+    end;
+  end;
+  mobjs.UpdateChanges;
+//  gAddon2.ActiveDb.MapObjects.UpdateChanges;
+end;
+
+procedure TfDeCurve.DecurveFastDL(dl:double);
+var obj:IIngeoMapObject;
+    shp:IIngeoShape;
+    cntp:IIngeoContourPart;
+    si,ci:integer;
+  oi: Integer;
+begin
+  mobjs:=gAddon2.ActiveDb.MapObjects;
+  for oi := 0 to gAddon2.Selection.Count - 1 do
+  begin
+    obj:=mobjs.GetObject(gAddon2.Selection.IDs[oi]);
+    for si:=0 to obj.Shapes.Count-1 do
+    begin
+      shp:=obj.Shapes.Item[si];
+      for ci:=0 to shp.Contour.Count-1 do
+      begin
+        cntp:=shp.Contour.Item[ci];
+        DecurveContour2FDL(cntp,dl);
       end;
     end;
   end;
@@ -515,9 +576,82 @@ begin
   end;
 end;
 
+procedure TfDeCurve.Curve2Lines2FastL(cntp: IIngeoContourPart; vi: integer; lx, ly, x, y, cv,dL: double);
+var l,l2,r,x0,y0:double;
+    t,wx,wy,fi1,fi2,c,vx,vy,px,py:double;
+    x2,y2,cv2:double;
+  i,n: Integer;
+  cn,sign: integer;
+begin
+//  cntp.SetVertex(vi-1,lx,ly,0);
+  cntp.DeleteVertex(vi);
+  cntp.InsertVertex(vi,x,y,0);
+//  cntp.SetVertex(vi,x+5,y,0);
+//  cntp.GetVertex(vi-1,x2,y2,cv2);
+//
+//  cntp.GetVertex(vi,x2,y2,cv2);
+
+  l:=SQRT(SQR(lx-x)+SQR(ly-y));
+  if l<1e-6 then exit;
+  if abs(cv)<1e-6 then
+    exit;
+  r:=abs(l*(1+cv*cv)/4/cv);
+  vx:=(x+lx)/2;
+  vy:=(y+ly)/2;
+  vx:=vx+(y-ly)/2*cv;// (x+lx)/2;
+  vy:=vy-(x-lx)/2*cv;
+  if cv>0 then
+  begin
+    vx:=vx-(y-ly)/l*r;// (x+lx)/2;
+    vy:=vy+(x-lx)/l*r;
+  end else
+  begin
+    vx:=vx+(y-ly)/l*r;// (x+lx)/2;
+    vy:=vy-(x-lx)/l*r;
+  end;
+  c:=0;
+  x0:=vx;//+ (y-ly)*c;    //-y
+  y0:=vy;//+ (lx-x)*c;    //x
+  n:=Round(2*pi*r/dL);
+//  if n<6 then
+//    n:=6;
+//  if n>10 then
+//    n:=12;
+  fi1:=CalcAngle(x0,y0,lx,ly);
+  fi2:=CalcAngle(x0,y0,x,y);
+  if fi2<fi1 then
+    fi2:=fi2+2*pi;
+  if cv>0 then
+  begin
+    cn:=Round(int((fi2-fi1)/ (2*pi/n)));
+    sign:=1;
+  end else
+  begin
+    cn:=Round(int((2*pi-(fi2-fi1))/ (2*pi/n)));
+    sign:=-1;
+  end;
+  t:=2*r*sin(180/n);
+  for i := 1 to cn  do
+  begin
+    wx:=x0+r*cos(fi1+2*pi*i/n*sign);
+    wy:=y0+r*sin(fi1+2*pi*i/n*sign);
+    cntp.InsertVertex(vi,wx,wy,0);
+    inc(vi);
+  end;
+end;
+
 procedure TfDeCurve.Button2Click(Sender: TObject);
 begin
   Decurve2;
+end;
+
+procedure TfDeCurve.Button3Click(Sender: TObject);
+var dl:double;
+begin
+  if TryStrToFloat(eDL.Text,dl) then
+  begin
+     DecurveFastDL(dl);
+  end;
 end;
 
 procedure TfDeCurve.CalculateCircle(lx, ly, x, y, cv: double; var f1, f2, r, x0,
