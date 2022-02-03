@@ -72,7 +72,8 @@ uses
   smartpointform in 'smartpointform.pas' {fSmartPointMaker},
   layoutfindreplace in 'layoutfindreplace.pas',
   layoutfindreplaceform in 'layoutfindreplaceform.pas' {fLayoutFindReplaceForm},
-  ZasechkaForm in 'ZasechkaForm.pas' {fZasechka};
+  ZasechkaForm in 'ZasechkaForm.pas' {fZasechka},
+  okruglform2 in 'okruglform2.pas' {fOkruglForm2};
 
 {$R *.RES}
 

@@ -29,8 +29,8 @@ object fLayoutFindReplaceForm: TfLayoutFindReplaceForm
     Caption = #1053#1072#1081#1090#1080
   end
   object Label3: TLabel
-    Left = 8
-    Top = 235
+    Left = 10
+    Top = 267
     Width = 48
     Height = 13
     Caption = #1047#1072#1084#1077#1085#1080#1090#1100
@@ -61,38 +61,40 @@ object fLayoutFindReplaceForm: TfLayoutFindReplaceForm
     TabOrder = 2
     OnClick = Button2Click
   end
-  object eFind: TEdit
-    Left = 64
-    Top = 197
-    Width = 329
-    Height = 21
-    TabOrder = 3
-  end
-  object eReplace: TEdit
-    Left = 64
-    Top = 232
-    Width = 329
-    Height = 21
-    TabOrder = 4
-  end
   object Button3: TButton
     Left = 504
     Top = 197
     Width = 109
     Height = 61
     Caption = #1042#1099#1087#1086#1083#1085#1080#1090#1100' '#1087#1086#1080#1089#1082' '#1079#1072#1084#1077#1085#1091
-    TabOrder = 5
+    TabOrder = 3
     WordWrap = True
     OnClick = Button3Click
   end
   object Button4: TButton
     Left = 8
-    Top = 272
+    Top = 336
     Width = 141
     Height = 45
     Caption = #1054#1090#1087#1088#1072#1074#1080#1090#1100' '#1085#1072' '#1087#1077#1095#1072#1090#1100
-    TabOrder = 6
+    TabOrder = 4
     OnClick = Button4Click
+  end
+  object eFind: TMemo
+    Left = 64
+    Top = 197
+    Width = 417
+    Height = 57
+    TabOrder = 5
+    WordWrap = False
+  end
+  object eReplace: TMemo
+    Left = 64
+    Top = 260
+    Width = 417
+    Height = 57
+    TabOrder = 6
+    WordWrap = False
   end
   object OpenDialog1: TOpenDialog
     Filter = #1064#1072#1073#1083#1086#1085#1099'|*.afr'

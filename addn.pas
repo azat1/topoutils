@@ -57,6 +57,7 @@ type
     procedure ToLinear;
     procedure CloseAll;
     procedure UnCloseAll;
+    procedure Okrugl2;
 
 	end;
 
@@ -82,7 +83,7 @@ uses
   csvexport, clearzpoints, contourorient, quickplan, linzasechka, polygoncreator, lineconnect,
   rasterchange, coordsystem, contactdrawer, pins, semipindrawe, linetext,cpwindow, tolinears,
   ufastselect, cntrcloser, lineconnect2, vectorrotate, dbextractor, makecircle, createzone, deletenear, objselectform, copybystyle, smartpointform,
-  layoutfindreplaceform, zasechkaForm;
+  layoutfindreplaceform, zasechkaForm, okruglform2;
 
 const
 	//Команда начать измерение расстояния
@@ -140,8 +141,9 @@ const
         cmZasechka=52;
         cmFastSelect2=53;
         cmLineConnect3=54;
+        cmOkrugl2=55;
 
-	kMacros: array [0..53] of TM2MacroAttrs = (
+	kMacros: array [0..54] of TM2MacroAttrs = (
 		( Command: cmActivate;
 			Name: 'SETPOINTS';
 			Hint: 'Нумерация точек объектов';
@@ -574,6 +576,14 @@ const
 			MenuShortCut: 0;
 			ToolbarName: 'Утилиты Az Soft (топо3)';
 			ToolbarGroup: 'Утилиты Az Soft (топо3)';
+			Bitmap: 0)  ,
+       ( Command: cmOkrugl2;
+			Name: 'OKRUGL2';
+			Hint: 'Улучшенное округление...';
+			MenuPath: 'Сервис\Программы\Улучшенное округление';
+			MenuShortCut: 0;
+			ToolbarName: 'Утилиты Az Soft (топо3)';
+			ToolbarGroup: 'Утилиты Az Soft (топо3)';
 			Bitmap: 0)
 
 
@@ -739,6 +749,8 @@ begin
       MakeZasechka(gAddon2);
     cmLineConnect3:
       LineConnect3(gAddon2);
+    cmOkrugl2:
+      Okrugl2;
 	end;
 end;
 
@@ -808,6 +820,15 @@ procedure TFAd.Notify(AnAdvise: TM2Notify; const AParams: IM2ParamsList);
 begin
   inherited;
 
+end;
+
+procedure TFAd.Okrugl2;
+var z:TfOkruglForm2;
+begin
+  z:=TfOkruglForm2.Create(nil);
+  z.app:=gAddon2;
+  z.ShowModal;
+  z.Free;
 end;
 
 procedure TFAd.StartDivider;

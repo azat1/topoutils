@@ -1,9 +1,9 @@
 object fOkrugl: TfOkrugl
   Left = 0
   Top = 0
-  Width = 397
-  Height = 176
   Caption = #1054#1082#1088#1091#1075#1083#1077#1085#1080#1077' '#1082#1086#1086#1088#1076#1080#1085#1072#1090
+  ClientHeight = 137
+  ClientWidth = 381
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -43,8 +43,8 @@ object fOkrugl: TfOkrugl
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 300
-    Top = 100
+    Left = 298
+    Top = 104
     Width = 75
     Height = 25
     Caption = #1047#1072#1082#1088#1099#1090#1100

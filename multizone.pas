@@ -1,7 +1,7 @@
 unit multizone;
 
 interface
-uses Classes,SysUtils, Ingeo_TLB,InScripting_TLB;
+uses Classes,SysUtils, Ingeo_TLB,InScripting_TLB, dialogs;
 type
    TMultiZoneCreator=class
      public
@@ -50,16 +50,34 @@ begin
     mobj:=mobjs.GetObject(app.Selection.IDs[i]);
     for si := 0 to mobj.Shapes.Count - 1 do
     begin
+//      try
+
       if mobj.Shapes[si].DefineGeometry then
       begin
         bcntr:=mobj.Shapes[si].Contour.BuildBufferZone(width);
         maincntr.Combine(inccOr,bcntr);
       end;
+//      except
+//        on e:Exception do
+//          ShowMessage(e.Message+':'+mobj.ID);
+//
+//      end;
     end;
 
   end;
+//  try
+
   RemoveArc(maincntr);
+//  except
+//    on e:Exception do
+//      ShowMessage('arc remove err');
+//  end;
+  try
   RemoveLinePoints(maincntr);
+  except
+    on e:Exception do
+      ShowMessage('remove line points');
+  end;
   lar:=app.ActiveDb.StyleFromID(stlid).Layer.ID;
   newobj:=mobjs.AddObject(lar);
   shp:=newobj.Shapes.Insert(-1,stlid);
@@ -179,9 +197,12 @@ var
   ci,vi: Integer;
   cntp: IIngeoContourPart;
   x,y,cv,ix,iy,ix1,iy1,x1,y1,cvv:double;
+  errcode:integer;
 begin
   for ci := 0 to cntr.Count - 1 do
   begin
+    errcode:=0;
+    try
     cntp:=cntr[ci];
     if cntp.Closed then
     begin
@@ -192,15 +213,28 @@ begin
       cntp.GetVertex(0,x1,y1,cvv);
       vi:=1;
     end;
+    except
+      on e:exception do
+        ShowMessage('pre error '+IntTostr(errcode)+'!'+e.Message);
+
+    end;
  //   vi:=0;
     while vi<cntp.VertexCount do
     begin
+
       cntp.GetVertex(vi,x,y,cv);
+      try
       if cv<>0 then
       begin
         if abs(cv)<0.5 then
         begin
+          try
           GetArcPoint(x1,y1,x,y,cv,ix,iy);
+          except
+            on e:Exception do
+              ShowMessage('getarcpoint error!'+e.Message);
+
+          end;
           cntp.DeleteVertex(vi);
          // cntp.DeleteVertex(vi);
           cntp.InsertVertex(vi,ix,iy,0);
@@ -208,13 +242,24 @@ begin
 
         end else
         begin
+          try
           GetArcPoint2(x1,y1,x,y,cv,ix,iy,ix1,iy1);
+          except
+            on e:Exception do
+              ShowMessage('getarcpoint2 error!'+e.Message);
+
+          end;
           cntp.DeleteVertex(vi);
           cntp.InsertVertex(vi,ix,iy,0);
           cntp.InsertVertex(vi+1,ix1,iy1,0);
           cntp.InsertVertex(vi+2,x,y,0);
 
         end;
+
+      end;
+      except
+        on e:Exception do
+          ShowMessage('in error!'+e.Message);
 
       end;
         x1:=x;

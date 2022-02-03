@@ -13,12 +13,12 @@ type
     Button1: TButton;
     Button2: TButton;
     Label2: TLabel;
-    eFind: TEdit;
     Label3: TLabel;
-    eReplace: TEdit;
     Button3: TButton;
     OpenDialog1: TOpenDialog;
     Button4: TButton;
+    eFind: TMemo;
+    eReplace: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);

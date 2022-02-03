@@ -132,6 +132,9 @@
     <DCCReference Include="okrugl.pas">
       <Form>fOkrugl</Form>
     </DCCReference>
+    <DCCReference Include="okruglform2.pas">
+      <Form>fOkruglForm2</Form>
+    </DCCReference>
     <DCCReference Include="oversearch.pas">
       <Form>fOverSearch</Form>
     </DCCReference>

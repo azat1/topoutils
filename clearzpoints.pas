@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Ingeo_TLB, InScripting_TLB, ComCtrls, ExtCtrls;
+  Dialogs, StdCtrls, Ingeo_TLB, InScripting_TLB, ComCtrls, ExtCtrls, StrUtils;
 
 type
   TfClearZPoints = class(TForm)
@@ -162,7 +162,8 @@ begin
     exit;
   mq:=mobjs.QueryByRect(obj.LayerID,x-mind,y-mind,x+mind,y+mind,True);
   ts:=obj.FormatText(field);
-  if not TryStrToFloat(ts,z1) then
+
+  if not (TryStrToFloat(ts,z1) and TryStrToFloat(AnsiReplaceStr(ts,'.',','),z1)) then
     exit;
   while not mq.EOF do
   begin
