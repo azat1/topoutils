@@ -96,6 +96,15 @@ object fLayoutFindReplaceForm: TfLayoutFindReplaceForm
     TabOrder = 6
     WordWrap = False
   end
+  object Button5: TButton
+    Left = 288
+    Top = 338
+    Width = 181
+    Height = 27
+    Caption = #1047#1072#1084#1077#1085#1080#1090#1100' '#1074#1089#1077' '#1096#1088#1080#1092#1090#1099'...'
+    TabOrder = 7
+    OnClick = Button5Click
+  end
   object OpenDialog1: TOpenDialog
     Filter = #1064#1072#1073#1083#1086#1085#1099'|*.afr'
     Options = [ofHideReadOnly, ofAllowMultiSelect, ofFileMustExist, ofEnableSizing]

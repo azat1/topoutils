@@ -12,6 +12,7 @@ type
       procedure ReplaceInText(fig:IInPictureFigure;find,replace:string);
       procedure ReplaceInGrid(fig:IInPictureFigure;find,replace:string);
       procedure Print(filelist:TStrings);
+      procedure FontChange(filelist:TStrings;fontname:string);
 
 
   end;
@@ -47,6 +48,31 @@ begin
     lw.SaveLayout;
     lw.Close;
   end;
+end;
+
+procedure TLayoutMassOps.FontChange(filelist: TStrings; fontname: string);
+var
+  i: Integer;
+  lw: IInLayoutWindow;
+  ff: string;
+  fi: Integer;
+begin
+  for i := 0 to filelist.Count - 1 do
+  begin
+    lw:=app.OpenWindow('LayoutWindow',filelist[i])as IInLayoutWindow;
+    //ff:=ExtractFileName(filelist[i]);
+    //lw.PrintPage(0,0,1,'печать авто '+ff,'');
+    for fi := 0 to lw.Figures.Count - 1 do
+    begin
+      if lw.Figures[fi].FigureType=inftText then
+      begin
+        (lw.Figures[fi] as IInPictureTextFigure).Font.Name:=fontname;
+      end;
+    end;
+    lw.SaveLayout;
+    lw.Close;
+  end;
+
 end;
 
 procedure TLayoutMassOps.Print(filelist: TStrings);

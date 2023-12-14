@@ -100,6 +100,9 @@
     <DCCReference Include="FRM.PAS">
       <Form>MainForm</Form>
     </DCCReference>
+    <DCCReference Include="grayform.pas">
+      <Form>fGrayMaker</Form>
+    </DCCReference>
     <DCCReference Include="katexport.pas">
       <Form>fKatExport</Form>
     </DCCReference>
@@ -117,6 +120,7 @@
     </DCCReference>
     <DCCReference Include="linzmapeditor.pas" />
     <DCCReference Include="makecircle.pas" />
+    <DCCReference Include="makegray.pas" />
     <DCCReference Include="matrixcnv.pas" />
     <DCCReference Include="MSELSTYLE.PAS">
       <Form>fMSelectStyle</Form>

@@ -19,11 +19,13 @@ type
     Button4: TButton;
     eFind: TMemo;
     eReplace: TMemo;
+    Button5: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
   private
     lpr:TLayoutMassOps;
     { Private declarations }
@@ -85,6 +87,20 @@ begin
   lpr.Print(ListBox1.Items);//,eFind.Text,eReplace.Text);
   lpr.Free;
 
+end;
+
+procedure TfLayoutFindReplaceForm.Button5Click(Sender: TObject);
+var f:TFontDialog;
+begin
+  f:=TFontDialog.Create(self);
+
+  if f.Execute(Handle)   then
+  begin
+    lpr:=TLayoutMassOps.Create(app);
+    lpr.FontChange(ListBox1.Items,f.Font.Name);//,eFind.Text,eReplace.Text);
+    lpr.Free;
+  end;
+  
 end;
 
 procedure TfLayoutFindReplaceForm.FormShow(Sender: TObject);

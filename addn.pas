@@ -83,7 +83,7 @@ uses
   csvexport, clearzpoints, contourorient, quickplan, linzasechka, polygoncreator, lineconnect,
   rasterchange, coordsystem, contactdrawer, pins, semipindrawe, linetext,cpwindow, tolinears,
   ufastselect, cntrcloser, lineconnect2, vectorrotate, dbextractor, makecircle, createzone, deletenear, objselectform, copybystyle, smartpointform,
-  layoutfindreplaceform, zasechkaForm, okruglform2;
+  layoutfindreplaceform, zasechkaForm, okruglform2, makegray;
 
 const
 	//Команда начать измерение расстояния
@@ -142,8 +142,9 @@ const
         cmFastSelect2=53;
         cmLineConnect3=54;
         cmOkrugl2=55;
+        cmGray=56;
 
-	kMacros: array [0..54] of TM2MacroAttrs = (
+	kMacros: array [0..55] of TM2MacroAttrs = (
 		( Command: cmActivate;
 			Name: 'SETPOINTS';
 			Hint: 'Нумерация точек объектов';
@@ -584,6 +585,14 @@ const
 			MenuShortCut: 0;
 			ToolbarName: 'Утилиты Az Soft (топо3)';
 			ToolbarGroup: 'Утилиты Az Soft (топо3)';
+			Bitmap: 0) ,
+       ( Command: cmGray;
+			Name: 'GRAY';
+			Hint: 'Серый слой...';
+			MenuPath: 'Сервис\Программы\Серый слой';
+			MenuShortCut: 0;
+			ToolbarName: 'Утилиты Az Soft (топо3)';
+			ToolbarGroup: 'Утилиты Az Soft (топо3)';
 			Bitmap: 0)
 
 
@@ -751,6 +760,8 @@ begin
       LineConnect3(gAddon2);
     cmOkrugl2:
       Okrugl2;
+    cmGray:
+      MakeLayerGray;
 	end;
 end;
 

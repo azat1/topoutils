@@ -73,7 +73,9 @@ uses
   layoutfindreplace in 'layoutfindreplace.pas',
   layoutfindreplaceform in 'layoutfindreplaceform.pas' {fLayoutFindReplaceForm},
   ZasechkaForm in 'ZasechkaForm.pas' {fZasechka},
-  okruglform2 in 'okruglform2.pas' {fOkruglForm2};
+  okruglform2 in 'okruglform2.pas' {fOkruglForm2},
+  makegray in 'makegray.pas',
+  grayform in 'grayform.pas' {fGrayMaker};
 
 {$R *.RES}
 
